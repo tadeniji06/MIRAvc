@@ -21,7 +21,7 @@ export async function POST(req: Request) {
     // Send email using Resend
     const result = await resend.emails.send({
       from: "onboarding@resend.dev", 
-      to: "mirvaccompany@gmail.com",
+      to: "mirvacinvestment@gmail.com",
       subject: `New Application from ${firstName} ${lastName}`,
       html: `
         <h2>New Form Submission (MIRVac Investment Company)</h2>

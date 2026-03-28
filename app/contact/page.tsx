@@ -105,7 +105,7 @@ export default function ContactPage() {
               </div>
               <div>
                 <h4 className="font-heading font-bold text-lg mb-1">Email</h4>
-                <p className="text-muted-foreground">mirvaccompany@gmail.com</p>
+                <p className="text-muted-foreground">mirvacinvestment@gmail.com</p>
               </div>
             </div>
           </div>

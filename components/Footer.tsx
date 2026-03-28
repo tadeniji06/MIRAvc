@@ -31,7 +31,7 @@ export default function Footer() {
             <li>Lvl 39, 108 St. Georges Terrace, Perth, WA, 6000 Aus</li>
             <li>Palo Alto, 2443 Ash St., United States</li>
             <li>+1 205 533 9505</li>
-            <li>mirvaccompany@gmail.com</li>
+            <li>mirvacinvestment@gmail.com</li>
           </ul>
         </div>
       </div>
