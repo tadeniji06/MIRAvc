@@ -15,29 +15,11 @@ export default function ContactPage() {
     setError("");
 
     const formData = new FormData(e.currentTarget);
-    const data = {
-      firstName: formData.get("firstName"),
-      lastName: formData.get("lastName"),
-      email: formData.get("email"),
-      message: formData.get("message"),
-      phone: formData.get("phone"),
-      birthdayDay: formData.get("birthdayDay"),
-      birthdayMonth: formData.get("birthdayMonth"),
-      birthdayYear: formData.get("birthdayYear"),
-      addressMulti: formData.get("addressMulti"),
-      countryRegion: formData.get("countryRegion"),
-      addressLine2: formData.get("addressLine2"),
-      city: formData.get("city"),
-      zip: formData.get("zip"),
-      companyName: formData.get("companyName"),
-      position: formData.get("position"),
-    };
 
     try {
       const res = await fetch("/api/contact", {
         method: "POST",
-        body: JSON.stringify(data),
-        headers: { "Content-Type": "application/json" },
+        body: formData,
       });
       
       if (!res.ok) {
@@ -95,7 +77,7 @@ export default function ContactPage() {
               </div>
               <div>
                 <h4 className="font-heading font-bold text-lg mb-1">Phone</h4>
-                <p className="text-muted-foreground">+1 205 533 9505</p>
+                <p className="text-muted-foreground">+1 478 777-3176</p>
               </div>
             </div>
 
@@ -105,7 +87,7 @@ export default function ContactPage() {
               </div>
               <div>
                 <h4 className="font-heading font-bold text-lg mb-1">Email</h4>
-                <p className="text-muted-foreground">mirvacinvestment@gmail.com</p>
+                <p className="text-muted-foreground">mirvaccompany@gmail.com</p>
               </div>
             </div>
           </div>
@@ -160,6 +142,14 @@ export default function ContactPage() {
                     <input type="number" placeholder="Day" name="birthdayDay" min="1" max="31" className="bg-background border border-border rounded-xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-accent/50 focus:border-accent transition-all" />
                     <input type="number" placeholder="Month" name="birthdayMonth" min="1" max="12" className="bg-background border border-border rounded-xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-accent/50 focus:border-accent transition-all" />
                     <input type="number" placeholder="Year" name="birthdayYear" min="1900" max="2100" className="bg-background border border-border rounded-xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-accent/50 focus:border-accent transition-all" />
+                  </div>
+                </div>
+
+                <div className="space-y-4 pt-4 border-t border-border">
+                  <label className="text-sm font-medium text-foreground block">Identity Verification</label>
+                  <div className="space-y-2">
+                    <label className="text-sm font-medium text-muted-foreground">Upload a valid ID (Driver&apos;s License, Passport, etc.)</label>
+                    <input type="file" name="idDocument" accept="image/*,.pdf" className="w-full bg-background border border-border rounded-xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-accent/50 focus:border-accent transition-all file:mr-4 file:py-2 file:px-4 file:rounded-xl file:border-0 file:text-sm file:font-semibold file:bg-accent/10 file:text-accent hover:file:bg-accent/20 cursor-pointer" />
                   </div>
                 </div>
 

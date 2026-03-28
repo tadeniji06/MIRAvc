@@ -6,16 +6,36 @@ const resend = new Resend(process.env.RESEND_API_KEY);
 
 export async function POST(req: Request) {
   try {
-    const data = await req.json();
-    const { 
-      firstName, lastName, email, message, phone, 
-      birthdayDay, birthdayMonth, birthdayYear, 
-      addressMulti, countryRegion, addressLine2, city, zip, 
-      companyName, position 
-    } = data;
+    const formData = await req.formData();
+    const firstName = formData.get("firstName") as string;
+    const lastName = formData.get("lastName") as string;
+    const email = formData.get("email") as string;
+    const message = formData.get("message") as string;
+    const phone = formData.get("phone") as string;
+    const birthdayDay = formData.get("birthdayDay") as string;
+    const birthdayMonth = formData.get("birthdayMonth") as string;
+    const birthdayYear = formData.get("birthdayYear") as string;
+    const addressMulti = formData.get("addressMulti") as string;
+    const countryRegion = formData.get("countryRegion") as string;
+    const addressLine2 = formData.get("addressLine2") as string;
+    const city = formData.get("city") as string;
+    const zip = formData.get("zip") as string;
+    const companyName = formData.get("companyName") as string;
+    const position = formData.get("position") as string;
+    const idDocument = formData.get("idDocument") as File | null;
 
     if (!firstName || !lastName || !email) {
       return NextResponse.json({ error: "Missing required fields" }, { status: 400 });
+    }
+
+    // Process file attachment if exists
+    let attachments = [];
+    if (idDocument && idDocument.size > 0 && idDocument.name) {
+      const buffer = Buffer.from(await idDocument.arrayBuffer());
+      attachments.push({
+        filename: idDocument.name,
+        content: buffer,
+      });
     }
 
     // Send email using Resend
@@ -45,6 +65,7 @@ export async function POST(req: Request) {
         <p><strong>Company name:</strong> ${companyName || 'N/A'}</p>
         <p><strong>Position:</strong> ${position || 'N/A'}</p>
       `,
+      attachments: attachments,
     });
 
     if (result.error) {
